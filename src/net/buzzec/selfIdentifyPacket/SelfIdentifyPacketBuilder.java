@@ -16,8 +16,8 @@ import java.util.Set;
  * <p>
  *     This class extends PNet's {@code PacketBuilder} and builds a packet that has object identification bytes. All the
  *     methods in that class can be used with this one and the sent packet is meant to be read by a
- *     {@code SelfIdentifyPacketReader}. Param {@code T} is used to tell what {@code SelfIdentifyObjectEnum} this packet
- *     is to be built from.
+ *     {@code ISelfIdentifyPacketReader}. Param {@code T} is used to tell what {@code ISelfIdentifyObjectEnum} this
+ *     packet is to be built from.
  * </p>
  *
  * @param <T> The {@code SelfIdentifyObjectEnum} the packet is meant to be built from.
@@ -37,66 +37,102 @@ public class SelfIdentifyPacketBuilder<T extends Enum<T> & ISelfIdentifyObjectEn
         withID(packetID);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized Packet build() {
         super.withByte(SelfIdentifyBaseIDs.EOP_ID);
         return super.build();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withBoolean(boolean b) {
         super.withByte(SelfIdentifyBaseIDs.BOOLEAN_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withBoolean(b);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withByte(byte b) {
         super.withByte(SelfIdentifyBaseIDs.BYTE_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withByte(b);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withBytes(byte[] b){
         super.withByte(SelfIdentifyBaseIDs.BYTES_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withBytes(b);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withDouble(double d) {
         super.withByte(SelfIdentifyBaseIDs.DOUBLE_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withDouble(d);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withFloat(float f) {
         super.withByte(SelfIdentifyBaseIDs.FLOAT_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withFloat(f);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withInt(int i) {
         super.withByte(SelfIdentifyBaseIDs.INT_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withInt(i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withLong(long l) {
         super.withByte(SelfIdentifyBaseIDs.LONG_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withLong(l);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withShort(short s) {
         super.withByte(SelfIdentifyBaseIDs.SHORT_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withShort(s);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public synchronized SelfIdentifyPacketBuilder<T> withString(String s) {
         super.withByte(SelfIdentifyBaseIDs.STRING_ID);
         return (SelfIdentifyPacketBuilder<T>)super.withString(s);
     }
 
+    /**
+     * Adds a specific object type from {@code ISelfIdentifyObjectEnum T}.
+     *
+     * @param type The {@code ISelfIdentifyObjectEnum T} value that represents {@code object}
+     * @param object The {@code ISelfIdentifyObjectEnum} object to be sent.
+     */
     public synchronized SelfIdentifyPacketBuilder<T> withSelfIdentifyObject(T type, Object object){
         super.withByte(type.getId());
         return (SelfIdentifyPacketBuilder<T>)super.withBytes(type.getBytes(object));
