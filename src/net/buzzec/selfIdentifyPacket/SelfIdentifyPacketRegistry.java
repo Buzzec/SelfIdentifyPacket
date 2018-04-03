@@ -44,6 +44,14 @@ public class SelfIdentifyPacketRegistry{
         return true;
     }
 
+    public static void setOnUnknownPacketServer(Function<Pair<Packet, Client>, Void> onUnknownPacketServer){
+        SelfIdentifyPacketRegistry.onUnknownPacketServer = onUnknownPacketServer;
+    }
+
+    public static void setOnUnknownPacketClient(Function<Pair<Packet, Client>, Void> onUnknownPacketClient){
+        SelfIdentifyPacketRegistry.onUnknownPacketClient = onUnknownPacketClient;
+    }
+
     static void applyServerFunction(Packet packet, Client client) throws IOException{
         try{
             if(map.containsKey(packet.getPacketID())){
