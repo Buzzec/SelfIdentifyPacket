@@ -13,7 +13,7 @@ import java.util.Arrays;
  *
  * @author Buzzec
  */
-public class UnknownPacketException extends RuntimeException{
+public class UnknownPacketException extends Exception{
     public UnknownPacketException(Packet packet, Client client){
         super("Unknown packet id: " + packet.getPacketID());
         client.send(new SelfIdentifyPacketBuilder<>(Packet.PacketType.Reply, SelfIdentifyBasic.class, SelfIdentifyBaseIDs.PACKET_ERROR_ID)
