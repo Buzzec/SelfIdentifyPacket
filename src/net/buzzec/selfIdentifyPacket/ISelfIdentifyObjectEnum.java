@@ -1,6 +1,8 @@
 package net.buzzec.selfIdentifyPacket;
 
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This interface is used to signify an {@code Enum} list of possible objects to be put in a packet.
@@ -19,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Buzzec
  */
 public interface ISelfIdentifyObjectEnum {
+    Logger logger = LoggerFactory.getLogger(ISelfIdentifyObjectEnum.class);
     /**
      * This method is used to determine the type id for the selected object.
      * <p>
@@ -71,11 +74,14 @@ public interface ISelfIdentifyObjectEnum {
      */
     @Nullable
     static <T extends Enum<T> & ISelfIdentifyObjectEnum> T findType(byte id, Class<T> clazz){
+        logger.trace("Finding id=" + id + " in class " + clazz.getName());
         for(T value : clazz.getEnumConstants()){
             if(value.getId() == id){
+                logger.trace("Found! answer = " + value.name());
                 return value;
             }
         }
+        logger.warn("Did not find id=" + id + " in class " + clazz.getName() + "!");
         return null;
     }
 }
