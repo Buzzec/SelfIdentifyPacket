@@ -20,6 +20,8 @@ import java.util.Set;
  *     packet is to be built from.
  * </p>
  *
+ * @see nl.pvdberg.pnet.packet.PacketBuilder
+ * @see ISelfIdentifyObjectEnum
  * @param <T> The {@code SelfIdentifyObjectEnum} the packet is meant to be built from.
  */
 @SuppressWarnings({"unchecked", "unused"})

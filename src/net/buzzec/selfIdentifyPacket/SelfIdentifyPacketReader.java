@@ -7,6 +7,13 @@ import nl.pvdberg.pnet.packet.PacketReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This class is used to read SelfIdentify packets. It is wrapped up in {@code SelfIdentifyListener}, but can be used
+ * manually only.
+ *
+ * @see SelfIdentifyListener
+ * @param <T> The {@code ISelfIdentifyEnum} that this packet is based on.
+ */
 @SuppressWarnings("unused")
 public class SelfIdentifyPacketReader<T extends Enum<T> & ISelfIdentifyObjectEnum>{
     private PacketReader packetReader;
@@ -17,6 +24,12 @@ public class SelfIdentifyPacketReader<T extends Enum<T> & ISelfIdentifyObjectEnu
         this.clazz = clazz;
     }
 
+    /**
+     * Used to get the list of objects that represents the values in the received packet.
+     *
+     * @return An {@code ArrayList} of {@code ClassQualifiedObject}s of the data tin the packet.
+     * @throws IOException When there's a read problem.
+     */
     public ArrayList<ClassQualifiedObject> getInfoListFromPacket() throws IOException {
         ArrayList<ClassQualifiedObject> out = new ArrayList<>();
 
@@ -70,6 +83,10 @@ public class SelfIdentifyPacketReader<T extends Enum<T> & ISelfIdentifyObjectEnu
         return out;
     }
 
+    /**
+     * Used to qualify the objects returned by reading the packet, otherwise it would just be an array of
+     * {@code Object}s!
+     */
     @SuppressWarnings("WeakerAccess")
     public class ClassQualifiedObject{
         public Class clazz;
