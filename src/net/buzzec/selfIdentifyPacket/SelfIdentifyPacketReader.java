@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * @see SelfIdentifyListener
  * @param <T> The {@code ISelfIdentifyEnum} that this packet is based on.
  */
+//TODO Add Logging
 @SuppressWarnings("unused")
 public class SelfIdentifyPacketReader<T extends Enum<T> & ISelfIdentifyObjectEnum>{
     private PacketReader packetReader;

@@ -24,6 +24,7 @@ import java.util.function.Function;
  * @see SelfIdentifyPacketRegistry
  * @author Buzzec
  */
+//TODO Add Logging
 @SuppressWarnings("unused")
 public class SelfIdentifyListener implements PNetListener{
     /**

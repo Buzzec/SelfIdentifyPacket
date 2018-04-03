@@ -24,6 +24,7 @@ import java.util.Set;
  * @see ISelfIdentifyObjectEnum
  * @param <T> The {@code SelfIdentifyObjectEnum} the packet is meant to be built from.
  */
+//TODO Add Logging
 @SuppressWarnings({"unchecked", "unused"})
 public class SelfIdentifyPacketBuilder<T extends Enum<T> & ISelfIdentifyObjectEnum> extends PacketBuilder {
     private static Logger logger = LoggerFactory.getLogger(SelfIdentifyPacketBuilder.class);
